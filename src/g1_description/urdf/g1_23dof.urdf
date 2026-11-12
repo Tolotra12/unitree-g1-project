@@ -1,10 +1,4 @@
 <robot name="g1_23dof">
-  <link name="base_footprint"/>
-  <joint name="base_footprint_to_pelvis" type="fixed">
-    <origin xyz="0 0 0.8" rpy="0 0 0"/>
-    <parent link="base_footprint"/>
-    <child link="pelvis"/>
-  </joint>
   
   <material name="dark">
     <color rgba="0.2 0.2 0.2 1"/>

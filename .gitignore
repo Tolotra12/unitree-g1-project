@@ -1,0 +1,16 @@
+# Dossiers générés par la compilation ROS 2
+build/
+install/
+log/
+.colcon/
+
+# Fichiers temporaires Python et C++
+__pycache__/
+*.pyc
+*.o
+*.so
+
+# Editeurs et système
+.vscode/
+.idea/
+.DS_Store

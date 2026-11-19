@@ -6,7 +6,7 @@
 
 ``` bash
 cd isaacsim
-./isaacsim.selector.sh
+./isaac-sim.selector.sh
 ```
 Puis ouvrir le fichier .usd
 
@@ -171,3 +171,60 @@ source /opt/ros/humble/setup.bash
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
+
+## Intégration des capteurs
+
+Pour verifier les topics
+
+``` bash
+source /opt/ros/humble/setup.bash
+ros2 topic list
+```
+
+Pour afficher les données une fois
+
+``` bash
+ros2 topic echo topic_name --once
+```
+
+Pour visualiser les données
+
+``` bash
+rviz2
+
+# Aller dans Add > Topic puis choisir le nom du topic
+# Il faut changer le FrameID
+```
+
+1. Camera D435i
+
+Ajouter la camera:
+Create > Camera
+Puis l'inclure dans torso_link > d435_link d435
+
+Ajouter la brique ros2:
+Cliquez sur la camera, puis Tools > Robotics > ROS 2 OmniGraphs
+
+2. IMU
+
+Ajouter l'IMU:
+Create > Sensors > Imu Sensor
+Puis l'inclure dans torso_link > imu_in_torso
+
+Ajouter la brique ros2:
+Clic droit sur le capteur, puis Create > Visual Scripting > Action Graph
+
+3. Lidar
+
+Ajouter le lidar pour 2D:
+Create > Sensors > PhysX Lidar > Rotating
+Puis l'inclure dans torso_link > mid360_link
+
+Ajouter le lidar pour 3D:
+Create > Sensors > RTX Lidar > NVIDIA > Example Rotary
+Puis l'inclure dans torso_link > mid360_link
+
+Ajouter la brique ros2:
+Clic droit sur le capteur, puis Create > Visual Scripting > Action Graph
+
+

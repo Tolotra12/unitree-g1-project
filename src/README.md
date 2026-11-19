@@ -7,6 +7,8 @@
 ``` bash
 cd isaacsim
 ./isaac-sim.selector.sh
+
+#Appuyer sur start
 ```
 Puis ouvrir le fichier .usd
 
@@ -154,9 +156,13 @@ async def start_g1_controller():
 asyncio.ensure_future(start_g1_controller())
 ```
 
+Puis appuyer sur run.
+
 3. Dans deux terminales différentes :
 
 Terminale 1: ROS 2 Bridge
+
+Activer le pont vers ROS 2
 
 ``` bash
 source /opt/ros/humble/setup.bash
@@ -165,6 +171,8 @@ python3 ~/g1_ws/src/g1_control/scripts/ros2_cmd_bridge.py
 ```
 
 Terminale 2: Teleop_key
+
+Controle du robot avec le clavier
 
 ``` bash
 source /opt/ros/humble/setup.bash
@@ -224,7 +232,7 @@ Ajouter le lidar pour 3D:
 Create > Sensors > RTX Lidar > NVIDIA > Example Rotary
 Puis l'inclure dans torso_link > mid360_link
 
-Ajouter la brique ros2:
+Ajouter la brique ROS2:
 Clic droit sur le capteur, puis Create > Visual Scripting > Action Graph
 
 

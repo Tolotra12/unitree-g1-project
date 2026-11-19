@@ -14,3 +14,5 @@ __pycache__/
 .vscode/
 .idea/
 .DS_Store
+src/FAST_LIO/
+src/livox_ros_driver2/

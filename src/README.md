@@ -258,7 +258,7 @@ Dans un terminal (avec use_sim_time:=false tant que /clock n'est pas diffusé)
 source /opt/ros/humble/setup.bash
 source ~/g1_ws/install/setup.bash
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-ros2 run fast_lio fastlio_mapping --ros-args --params-file ~/g1_ws/src/FAST_LIO/config/g1_sim.yaml -p use_sim_time:=false
+ros2 run fast_lio fastlio_mapping --ros-args --params-file ~/g1_ws/src/FAST_LIO/config/g1_sim_ros2.yaml -p use_sim_time:=false
 ```
 
 Puis ouvrir rviz2 dans un autre terminal pour visualiser la sortie
@@ -293,6 +293,68 @@ ros2 topic hz /Odometry
 # Lire un seul message d'odométrie pour vérifier position / orientation / frame_id
 ros2 topic echo --once /Odometry
 ```
+
+## Projection 2D pour nav2
+
+1. Vérifier quel child_frame_id publie /Odometry et si /scan émet déjà des messages
+
+```bash
+source /opt/ros/humble/setup.bash
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+ros2 topic echo --once /Odometry --field child_frame_id
+ros2 topic info /scan
+```
+2. Installer pointcloud_to_laserscan
+
+```bash
+sudo apt update
+sudo apt install -y ros-humble-pointcloud-to-laserscan
+```
+
+3. Lancer la projection 3D (/cloud_registered) vers 2D (/scan)
+
+```bash
+source /opt/ros/humble/setup.bash
+source ~/g1_ws/install/setup.bash
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+ros2 run pointcloud_to_laserscan pointcloud_to_laserscan_node --ros-args \
+  -p use_sim_time:=false \
+  -p target_frame:=pelvis \
+  -p min_height:=0.1 \
+  -p max_height:=1.5 \
+  -p range_min:=0.2 \
+  -p range_max:=20.0 \
+  -r cloud_in:=/cloud_registered \
+  -r scan:=/scan
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

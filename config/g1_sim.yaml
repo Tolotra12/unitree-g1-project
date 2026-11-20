@@ -1,6 +1,6 @@
 common:
   lid_topic: "/livox/lidar"
-  imu_topic: "/imu"
+  imu_topic: "/livox/imu"
   time_sync_en: false
 
 preprocess:

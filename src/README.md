@@ -235,4 +235,22 @@ Puis l'inclure dans torso_link > mid360_link
 Ajouter la brique ROS2:
 Clic droit sur le capteur, puis Create > Visual Scripting > Action Graph
 
+## Installation de FAST_LIO
+
+1. Vérifier les bibliothèques
+
+``` bash
+sudo apt update
+sudo apt install -y libpcl-dev libeigen3-dev ros-humble-pcl-ros ros-humble-pcl-conversions
+```
+
+2. Vérifier si le fichier .yaml contient bien les topics
+
+``` bash
+cat ~/g1_ws/src/FAST_LIO/config/g1_sim.yaml
+```
+
+
+
+
 

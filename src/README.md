@@ -247,10 +247,52 @@ sudo apt install -y libpcl-dev libeigen3-dev ros-humble-pcl-ros ros-humble-pcl-c
 2. Vérifier si le fichier .yaml contient bien les topics
 
 ``` bash
-cat ~/g1_ws/src/FAST_LIO/config/g1_sim.yaml
+cat ~/g1_ws/src/FAST_LIO/config/g1_sim_ros2.yaml
 ```
 
+3. Lancer fastlio_mapping et vérifier la sortie
 
+Dans un terminal (avec use_sim_time:=false tant que /clock n'est pas diffusé)
+
+```bash
+source /opt/ros/humble/setup.bash
+source ~/g1_ws/install/setup.bash
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+ros2 run fast_lio fastlio_mapping --ros-args --params-file ~/g1_ws/src/FAST_LIO/config/g1_sim.yaml -p use_sim_time:=false
+```
+
+Puis ouvrir rviz2 dans un autre terminal pour visualiser la sortie
+
+```bash
+source /opt/ros/humble/setup.bash
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+rviz2
+
+#faut mettre fixed frame sur camera_init
+```
+4. Vérifier que /cloud_registered et l'odométrie existent et publient
+
+```bash
+source /opt/ros/humble/setup.bash
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+# Vérifier que le nœud est actif
+ros2 node list
+
+# Lister les topics liés au nuage recalé et à l'odométrie (ex: /cloud_registered, /Odometry ou /aft_mapped_to_init)
+ros2 topic list | grep -iE "cloud|odom|mapped|path"
+```
+
+Ensuite, contrôle ce qu'ils émettent
+
+```bash
+# Vérifier la fréquence de publication (remplace /Odometry par le nom exact affiché ci-dessus si différent)
+ros2 topic hz /cloud_registered
+ros2 topic hz /Odometry
+
+# Lire un seul message d'odométrie pour vérifier position / orientation / frame_id
+ros2 topic echo --once /Odometry
+```
 
 
 

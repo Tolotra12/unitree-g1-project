@@ -1,0 +1,8 @@
+slam_toolbox:
+  ros__parameters:
+    odom_frame: camera_init
+    map_frame: map
+    base_frame: body
+    scan_topic: /scan_proj
+    mode: mapping
+    use_sim_time: false

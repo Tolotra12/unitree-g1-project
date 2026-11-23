@@ -330,6 +330,70 @@ ros2 run pointcloud_to_laserscan pointcloud_to_laserscan_node --ros-args \
   -r scan:=/scan
 ```
 
+## Cartographie
+
+1. Terminal 1 Lancer FAST-LIO2
+
+
+```Bash
+source /opt/ros/humble/setup.bash
+source ~/g1_ws/install/setup.bash
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+ros2 run fast_lio fastlio_mapping --ros-args \
+  --params-file ~/g1_ws/src/FAST_LIO/config/g1_sim.yaml \
+  -p use_sim_time:=false
+```
+
+2. Terminal 2 Vérifier les sorties et la transformation statique
+
+```Bash
+source /opt/ros/humble/setup.bash
+source ~/g1_ws/install/setup.bash
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+ros2 run tf2_ros static_transform_publisher -0.03959 -0.00224 0.13792 0 0 0 body mid360_link &
+ros2 topic hz /cloud_registered /Odometry
+```
+
+3. Terminal 3 Visualiser la carte 3D dans RViz2 et passer à la carte 2D
+
+```bash
+source /opt/ros/humble/setup.bash
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+ros2 run pointcloud_to_laserscan pointcloud_to_laserscan_node --ros-args \
+  -p use_sim_time:=false \
+  -p target_frame:=body \
+  -p min_height:=-0.5 \
+  -p max_height:=1.5 \
+  -p range_min:=0.3 \
+  -p range_max:=20.0 \
+  -r cloud_in:=/cloud_registered \
+  -r scan:=/scan_proj
+```
+
+4. Terminal 4 Visualiser sur rviz
+
+```bash
+source /opt/ros/humble/setup.bash
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+ros2 run pointcloud_to_laserscan pointcloud_to_laserscan_node --ros-args \
+  -p use_sim_time:=false \
+  -p target_frame:=body \
+  -p min_height:=-0.5 \
+  -p max_height:=1.5 \
+  -p range_min:=0.3 \
+  -p range_max:=20.0 \
+  -r cloud_in:=/cloud_registered \
+  -r scan:=/scan_proj
+```
+  
+
+
+
+
 
 
 

@@ -1,15 +1,24 @@
 /**:
   ros__parameters:
+    feature_extract_enable: false
+    point_filter_num: 1
+    max_iteration: 3
+    filter_size_surf: 0.2
+    filter_size_map: 0.2
+    cube_side_length: 1000.0
+
     common:
       lid_topic: "/livox/lidar"
       imu_topic: "/livox/imu"
       time_sync_en: false
+      time_offset_lidar_to_imu: 0.0
 
     preprocess:
       lidar_type: 2
       scan_line: 32
+      scan_rate: 10
       timestamp_unit: 0
-      blind: 0.3
+      blind: 0.1
 
     mapping:
       acc_cov: 0.1
@@ -17,7 +26,19 @@
       b_acc_cov: 0.0001
       b_gyr_cov: 0.0001
       fov_degree: 360.0
-      det_range: 50.0
+      det_range: 100.0
       extrinsic_est_en: false
       extrinsic_T: [-0.03959, -0.00224, 0.13792]
-      extrinsic_R: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+      extrinsic_R: [1.0, 0.0, 0.0,
+                    0.0, 1.0, 0.0,
+                    0.0, 0.0, 1.0]
+
+    publish:
+      path_en: true
+      scan_publish_en: true
+      dense_publish_en: true
+      scan_bodyframe_pub_en: true
+
+    pcd_save:
+      pcd_save_en: false
+      interval: -1

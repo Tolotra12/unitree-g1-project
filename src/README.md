@@ -415,7 +415,35 @@ ros2 launch fast_lio mapping.launch.py config_file:=mid360.yaml
 # Dans rviz2, règle Fixed Frame sur camera_init 
 ```
 
+## Générer le cost map
 
+1. Démarrer d'abord la chaîne SLAM 2D (Terminal 1)
+
+```bash
+source ~/g1_ws/install/setup.bash
+ros2 launch g1_navigation g1_slam_2d.launch.py
+
+# Afficher la carte /map et rester sur caméra_init pour Fixed_frame
+```
+
+2. Lancer Nav2 dans un second terminal (Terminal 2)
+
+```bash
+source ~/g1_ws/install/setup.bash
+ros2 launch nav2_bringup navigation_launch.py \
+  use_sim_time:=false \
+  params_file:=$(ros2 pkg prefix g1_navigation)/share/g1_navigation/config/nav2_params.yaml
+```
+
+3. Afficher les zones d'inflation cyan/rose dans RViz2
+
+```bash
+Dans RViz2, règle Global Options -> Fixed Frame sur map.
+
+Clique sur Add -> By topic -> /global_costmap/costmap -> Map -> OK.
+
+Déplie ce nouvel affichage Map dans le panneau gauche, passe Color Scheme à costmap et Alpha à 0.5.
+```
 
 
 

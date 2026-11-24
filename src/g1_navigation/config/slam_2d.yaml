@@ -1,0 +1,24 @@
+slam_toolbox:
+  ros__parameters:
+    solver_plugin: solver_plugins::CeresSolver
+    ceres_linear_solver: SPARSE_NORMAL_CHOLESKY
+    ceres_preconditioner: SCHUR_JACOBI
+    ceres_trust_strategy: LEVENBERG_MARQUARDT
+    odom_frame: camera_init
+    map_frame: map
+    base_frame: base_link
+    scan_topic: /scan
+    use_map_saver: true
+    mode: mapping
+    resolution: 0.01
+    max_laser_range: 15.0
+    minimum_travel_distance: 0.1
+    minimum_travel_heading: 0.1
+    transform_publish_period: 0.02
+    map_update_interval: 1.0
+    use_scan_matching: true
+    use_scan_barycenter: true
+    do_loop_closing: true
+    correlation_search_space_dimension: 0.5
+    correlation_search_space_resolution: 0.01
+    correlation_search_space_smear_deviation: 0.1

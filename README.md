@@ -111,6 +111,18 @@ Une entrée par jour de travail utile : ce qui a été fait, ce qui a été déc
 
 ## Comment contribuer
 
+
 - Une branche par ticket, nommée `feature/<sujet>`.
 - Un message de commit court qui dit ce qui change et pourquoi.
 - Mettre à jour ce document dans la même modification de code.
+
+
+# Comment se connecter au robot g1
+
+```bash
+ssh unitree@192.168.123.164
+
+#Mdp: 123
+```
+
+

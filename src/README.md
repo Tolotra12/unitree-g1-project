@@ -376,18 +376,7 @@ ros2 run pointcloud_to_laserscan pointcloud_to_laserscan_node --ros-args \
 4. Terminal 4 Visualiser sur rviz
 
 ```bash
-source /opt/ros/humble/setup.bash
-export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-
-ros2 run pointcloud_to_laserscan pointcloud_to_laserscan_node --ros-args \
-  -p use_sim_time:=false \
-  -p target_frame:=body \
-  -p min_height:=-0.5 \
-  -p max_height:=1.5 \
-  -p range_min:=0.3 \
-  -p range_max:=20.0 \
-  -r cloud_in:=/cloud_registered \
-  -r scan:=/scan_proj
+rv1z2
 ```
   
 

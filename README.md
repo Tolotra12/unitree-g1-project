@@ -125,4 +125,42 @@ ssh unitree@192.168.123.164
 #Mdp: 123
 ```
 
+Les IP existants:
+
+```bash
+Nmap scan report for hyperX (192.168.123.99)
+Host is up (0.00010s latency).
+Nmap scan report for 192.168.123.120 --> Pour Lidar
+Host is up (0.0035s latency).
+Nmap scan report for 192.168.123.161
+Host is up (0.00018s latency).
+Nmap scan report for 192.168.123.164
+Host is up (0.00051s latency).
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

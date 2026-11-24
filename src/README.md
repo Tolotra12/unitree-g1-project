@@ -378,9 +378,42 @@ ros2 run pointcloud_to_laserscan pointcloud_to_laserscan_node --ros-args \
 ```bash
 rv1z2
 ```
+
+# SLAM sur robot réel avec FAST-LIO
+
+## Visualisation Lidar
+
+1. Vérifier qu'on a bien les bons adresses IP dans le fichier .json
+
+```bash
+grep "192.168.123" ~/g1_ws/src/livox_ros_driver2/config/MID360_config.json
+```
+
+
+2. Lancer le Lidar et rviz
+
+```bash
+source ~/g1_ws/install/setup.bash
+ros2 launch livox_ros_driver2 rviz_MID360_launch.py
+```
+
+## Visualisation vers le traitement
   
+1. Passer au format CustomMsg
 
+```bash
+source ~/g1_ws/install/setup.bash
+ros2 launch livox_ros_driver2 msg_MID360_launch.py
+```
 
+2. Lancer le SLAM 3D
+
+```bash
+source ~/g1_ws/install/setup.bash
+ros2 launch fast_lio mapping.launch.py config_file:=mid360.yaml
+
+# Dans rviz2, règle Fixed Frame sur camera_init 
+```
 
 
 

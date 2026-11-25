@@ -445,7 +445,12 @@ Clique sur Add -> By topic -> /global_costmap/costmap -> Map -> OK.
 Déplie ce nouvel affichage Map dans le panneau gauche, passe Color Scheme à costmap et Alpha à 0.5.
 ```
 
+4. Sauvegarder la carte 2D en cours
 
+```bash
+source ~/g1_ws/install/setup.bash
+ros2 run nav2_map_server map_saver_cli -f ~/g1_ws/src/g1_navigation/maps/<nom_de_la_carte>
+```
 
 
 

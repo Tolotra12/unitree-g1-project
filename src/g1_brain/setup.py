@@ -24,6 +24,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'person_tracker = g1_brain.person_tracker_node:main',
         ],
     },
 )
